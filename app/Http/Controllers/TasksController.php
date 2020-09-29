@@ -51,7 +51,13 @@ class TasksController extends Controller
     // postでtasks/にアクセスされた場合の「新規登録処理」
     public function store(Request $request)
     {
-        // メッセージを作成
+        // validation
+        $request->validate([
+            'content' => 'required|max:255',    
+        ]);
+        
+        
+        // taskを作成
         $task = new Task;
         $task->content = $request->content;
         $task->save();
@@ -69,10 +75,10 @@ class TasksController extends Controller
     // getでtasks/idにアクセスされた場合の「取得表示処理」
     public function show($id)
     {
-        // idの値でメッセージを検索して取得
+        // idの値でtaskを検索して取得
         $task = Task::findOrFail($id);
 
-        // メッセージ詳細ビューでそれを表示
+        // task詳細ビューでそれを表示
         return view('tasks.show', [
             'task' => $task,
         ]);
@@ -106,9 +112,14 @@ class TasksController extends Controller
     // putまたはpatchでtasks/idにアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
-        // idの値でメッセージを検索して取得
+        // validation
+        $request->validate([
+            'content' => 'required|max:255'
+        ]);
+        
+        // idの値でtaskを検索して取得
         $task = Task::findOrFail($id);
-        // メッセージを更新
+        // taskを更新
         $task->content = $request->content;
         $task->save();
 
