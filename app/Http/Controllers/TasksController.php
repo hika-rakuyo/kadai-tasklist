@@ -17,13 +17,19 @@ class TasksController extends Controller
     // getでtasks/にアクセスされた場合の「一覧表示処理」
     public function index()
     {
-        // task一覧を取得
-        $tasks = Task::all();
-
-        // task一覧ビューでそれを表示
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+        $data = [];
+        if(\Auth::check()){
+        
+            // task一覧を取得
+            $tasks = Task::all();
+    
+            // task一覧ビューでそれを表示
+            return view('tasks.index', [
+                'tasks' => $tasks,
+            ]);
+        }
+        
+        return view('welcome', $data);
     }
 
     /**
