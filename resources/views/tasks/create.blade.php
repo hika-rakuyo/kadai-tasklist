@@ -3,23 +3,23 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>新規タスク登録ページ</h1>
+    <h1>New Task</h1>
 
     <div class="row">
         <div class="col-6">
             {!! Form::model($task, ['route' => 'tasks.store']) !!}
             
                 <div class="form-group">
-                    {!! Form::label('content', 'やること:') !!}
+                    {!! Form::label('content', 'To Do:') !!}
                     {!! Form::text('content', null, ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('status', '進捗状況:') !!}
+                    {!! Form::label('status', 'status:') !!}
                     {!! Form::text('status', null, ['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Add to Tasklist', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
         </div>

@@ -2,7 +2,16 @@
 
 @section('content')
     @if (Auth::check())
-        {{ Auth::user()->name }}
+        <div class="row">
+            <div class="col-sm-8">
+                {{-- Todo一覧 --}}
+                @include('tasks.tasks')
+            </div>
+        </div>
+        <div>
+            {{-- task作成ページへのリンク --}}
+            {!! link_to_route('tasks.create', 'New Task', [], ['class' => 'btn btn-primary']) !!}
+        </div>
     @else
         <div class="center jumbotron">
             <div class="text-center">
